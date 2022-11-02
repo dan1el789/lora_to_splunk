@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 18.x]
+        node-version: [ 18.x ]
 
     steps:
     - uses: actions/checkout@v3
@@ -25,4 +25,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: node index.js
+    - name: run it
+      env:
+        MQTT: ${{ secrets.MQTT }}
+        SPLUNK: ${{ secrets.SPLUNK }}
+      run: |
+        echo $MQTT
+        node index.js
