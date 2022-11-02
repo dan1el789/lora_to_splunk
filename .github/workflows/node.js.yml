@@ -29,16 +29,13 @@ jobs:
         MQTT: ${{ secrets.MQTT }}
         SPLUNK: ${{ secrets.SPLUNK }}
       run: |
-        MQTT={{ secrets.MQTT }}
-        SPLUNK={{ secrets.SPLUNK }}
-        echo $MQTT
+        echo ${#MQTT}
         npm ci
+        
     - name: run it
       env:
         MQTT: ${{ secrets.MQTT }}
         SPLUNK: ${{ secrets.SPLUNK }}
       run: |
-        MQTT={{ secrets.MQTT }}
-        SPLUNK={{ secrets.SPLUNK }}
-        echo $MQTT
+        echo ${#MQTT}
         node index.js
