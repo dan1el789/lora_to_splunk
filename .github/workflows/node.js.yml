@@ -24,7 +24,13 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
+    - name: npm clean install
+      env:
+        MQTT: ${{ secrets.MQTT }}
+        SPLUNK: ${{ secrets.SPLUNK }}
+      run: |
+        echo $MQTT
+        npm ci
     - name: run it
       env:
         MQTT: ${{ secrets.MQTT }}
