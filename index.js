@@ -39,7 +39,7 @@ async function exitGitHubAction(){
      return process.exit(0);
    }
 }
-
+exitGitHubAction();
 function sendTemperatureDataToSplunk(sensorId, temperature){
   let req = createRequestIgnoringSslCertificate()
   
