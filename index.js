@@ -30,6 +30,16 @@ client.on('message', (topic, payload) => {
   sendTemperatureDataToSplunk(data.end_device_ids.device_id,data.uplink_message.decoded_payload.temperature)
 })
 
+function isGitHubAction(){
+  return process.env.GITHUB_ACTION != undefined
+}
+async function exitGitHubAction(){
+   if(isGitHubAction()){
+     await new Promise(r => setTimeout(r, 70 * 60 * 1000));
+     return process.exit(0);
+   }
+}
+
 function sendTemperatureDataToSplunk(sensorId, temperature){
   let req = createRequestIgnoringSslCertificate()
   
