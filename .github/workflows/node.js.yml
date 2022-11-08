@@ -3,7 +3,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "f/bugfix-other-messages" ]
+    branches: [ "main" ]
   schedule: 
     - cron: "0 * * * *"
   workflow_dispatch: 
