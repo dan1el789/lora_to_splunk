@@ -26,8 +26,12 @@ client.on('connect', () => {
 
 client.on('message', (topic, payload) => {
   console.log('Received Message:', topic, payload.toString())
-  let data = JSON.parse(payload.toString())
-  sendTemperatureDataToSplunk(data.end_device_ids.device_id,data.uplink_message.decoded_payload.temperature)
+  try {
+    let data = JSON.parse(payload.toString())
+    sendTemperatureDataToSplunk(data.end_device_ids.device_id,data.uplink_message.decoded_payload.temperature)
+  } catch(error) {
+    console.log(error)
+  }
 })
 
 function isGitHubAction(){
